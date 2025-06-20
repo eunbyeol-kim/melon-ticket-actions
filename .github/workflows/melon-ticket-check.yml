@@ -14,12 +14,13 @@ jobs:
         uses: mooyoul/melon-ticket-actions@v1.1.5
         id: check
         with:
-          product-id: 211408  # ← 이거는 사용자가 준 공연 링크에서 가져온 ID
-          message: '🎟️ 멜론 티켓이 열렸어요! 👉 https://ticket.melon.com/performance/index.htm?prodId=211408'
+          product-id: 211408  
+          schedule-id: 100002
+          message: 드가자 'https://ticket.melon.com/performance/index.htm?prodId=211408'
 
       - name: Notify via Discord
         if: success()
         run: |
           curl -X POST -H "Content-Type: application/json" \
-          -d "{\"content\": \"🎟️ 멜론 티켓 열림! 👉 https://ticket.melon.com/performance/index.htm?prodId=211408\"}" \
+          -d "{\"content\": \"드가자 https://ticket.melon.com/performance/index.htm?prodId=211408\"}" \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
